@@ -1,0 +1,20 @@
+{
+  "name": "catapulta-mcp-server",
+  "version": "0.1.0",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "start": "node catapulta-mcp-server.js",
+    "dev": "node --watch catapulta-mcp-server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "^5.8.2"
+  }
+}
