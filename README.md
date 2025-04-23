@@ -1,10 +1,12 @@
+
+
 # Catapulta MCP
 
-A Model Context Protocol (MCP) implementation for Catapulta CLI, enabling AI-powered interactions with deployment and management tools.
+A Model Context Protocol (MCP) implementation for [Catapulta](https://catapulta.sh), enabling AI models or AI-powered code editors to perform Web3 smart contracts deployments.
 
 ## Overview
 
-Catapulta MCP is a server implementation that bridges the gap between AI models and the Catapulta CLI, allowing for intelligent automation of deployment tasks and other operations. It provides a standardized way for AI models to interact with Catapulta's functionality through a secure and controlled interface.
+Catapulta MCP is a server implementation that bridges the gap between AI models and the Catapulta CLI, allowing for the automation of Web3 smart contracts deployment tasks and other operations. It provides a standardized way for AI models to interact with Catapulta's functionality through a secure and controlled interface.
 
 ## Features
 
