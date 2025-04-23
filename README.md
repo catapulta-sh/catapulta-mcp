@@ -105,13 +105,27 @@ npm run build
 npm test
 ```
 
-### Contributing
+### Using it on Cursor
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- Open Cursor Settings
+- Go to the MCP tab
+- Click on Add new global MCP server
+
+Paste this on the mcp.json
+
+```json
+{
+  "mcpServers": {
+    "Catapulta-client":
+    {
+      "command": "ts-node",
+      "args": ["D:\\Trabajo\\Catapulta\\catapulta-mcp\\catapulta-mcp-server.ts"],
+      "env": {}
+    }
+  }
+}
+```
+
 
 ## License
 
