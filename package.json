@@ -1,11 +1,17 @@
 {
-  "name": "catapulta-mcp-server",
-  "version": "0.1.0",
-  "type": "commonjs",
+  "name": "@catapulta/mcp-server",
+  "description": "Catapulta MCP Server",
+  "author": "Catapulta",
+  "version": "0.6.0",
+  "type": "module",
+  "main": "dist/catapulta-mcp-server.js",
+  "bin": {
+    "mcp-server": "dist/catapulta-mcp-server.js"
+  },
   "scripts": {
     "build": "tsc",
-    "start": "node catapulta-mcp-server.js",
-    "dev": "node --watch catapulta-mcp-server.js"
+    "start": "node dist/catapulta-mcp-server.js",
+    "dev": "ts-node catapulta-mcp-server.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
