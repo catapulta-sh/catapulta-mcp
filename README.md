@@ -118,8 +118,8 @@ Paste this on the mcp.json
   "mcpServers": {
     "Catapulta-client":
     {
-      "command": "ts-node",
-      "args": ["D:\\Trabajo\\Catapulta\\catapulta-mcp\\catapulta-mcp-server.ts"],
+      "command": "npx",
+      "args": ["-y", "@catapulta/mcp-server@latest"],
       "env": {}
     }
   }
