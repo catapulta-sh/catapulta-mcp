@@ -126,13 +126,7 @@ Paste this on the mcp.json
 }
 ```
 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 - [Model Context Protocol](https://modelcontextprotocol.io)
-- [Catapulta CLI](https://github.com/your-org/catapulta)
-- All contributors and maintainers 
+- [Catapulta CLI](https://github.com/catapulta-sh)
