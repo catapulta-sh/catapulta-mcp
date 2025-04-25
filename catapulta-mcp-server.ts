@@ -248,6 +248,50 @@ server.tool(
   }
 );
 
+// Add tool to install Catapulta CLI
+server.tool(
+  "install_cli",
+  {},
+  async () => {
+    const installCommand = "npm i @catapulta/cli";
+    
+    try {
+      const { stdout, stderr } = await execAsync(installCommand);
+      
+      if (stderr && !stderr.includes('npm WARN')) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error installing Catapulta CLI: ${stderr}`,
+            },
+          ],
+        };
+      }
+      
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Catapulta CLI installed successfully!\n\n${stdout}`,
+          },
+        ],
+        terminal_command: installCommand,
+        should_run_command: true,
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Error installing Catapulta CLI: ${error instanceof Error ? error.message : "Unknown error"}`,
+          },
+        ],
+      };
+    }
+  }
+);
+
 // Start the server with StdIO transport
 const transport = new StdioServerTransport();
 server.connect(transport).catch((error) => {
