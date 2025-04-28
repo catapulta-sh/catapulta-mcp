@@ -219,7 +219,7 @@ server.tool(
   "execute_command",
   {
     command: z
-      .enum(["help", "--version", "-v"])
+      .enum(["help", "--version", "-v", "login"])
       .describe("List of allowed commands"),
   },
   async ({ command }) => {
