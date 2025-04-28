@@ -10,6 +10,7 @@ Catapulta MCP is a server implementation that bridges the gap between AI models 
 
 - **Deployment Command Generation**: AI-powered generation of deployment commands with support for multiple networks
 - **Safe Command Execution**: Controlled execution of CLI commands with built-in safety checks
+- **Wallet Management**: Generate and manage wallets through simple commands
 - **Network Support**: Extensive network support including:
   - Ethereum networks (mainnet, testnets)
   - Layer 2 solutions (Arbitrum, Optimism, Base)
@@ -22,7 +23,7 @@ Catapulta MCP is a server implementation that bridges the gap between AI models 
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/catapulta-mcp.git
+git clone https://github.com/catapulta-sh/catapulta-mcp.git
 cd catapulta-mcp
 
 # Install dependencies
