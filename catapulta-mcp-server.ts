@@ -86,7 +86,7 @@ async function executeCommand(command: string): Promise<CommandResult> {
 server.tool(
   "generate_deploy_command",
   {
-    script_path: z.string().describe("Path to the deployment script"),
+    script_path: z.string().describe("Path to the Foundry deployment script"),
     network: z
       .enum([
         "matic",
@@ -149,13 +149,23 @@ server.tool(
       ])
       .describe("Target network for deployment"),
     sponsor: z
-      .boolean()
+      .string()
+      .toLowerCase()
+      .transform((val) => val === "true")
+      .pipe(z.boolean())
       .optional()
-      .describe("Whether to use sponsorship for deployment"),
+      .describe(
+        "Use sponsor so Catapulta can provide gas to the wallet before deployment, or deploy without crypto or deploy without cryptocurrencies"
+      ),
     gas_hawk: z
-      .boolean()
+      .string()
+      .toLowerCase()
+      .transform((val) => val === "true")
+      .pipe(z.boolean())
       .optional()
-      .describe("Enable gas hawk mode to save gas costs in deployments"),
+      .describe(
+        "Enable gas hawk mode to save gas costs in deployments or to queue the deployment to save gas prices"
+      ),
     simulate: z
       .boolean()
       .optional()
@@ -170,12 +180,14 @@ server.tool(
     libraries: z
       .string()
       .optional()
-      .describe("Pass library addresses, with Foundry libraries format"),
+      .describe(
+        "Link libraries or library linking to the deployment script, format: <libraryPath>:<libraryName>:<libraryAddress>. "
+      ),
   },
   async ({
     script_path,
     network,
-    sponsor = false,
+    sponsor = true,
     gas_hawk = false,
     simulate = false,
     simulate_block_number,
@@ -294,10 +306,7 @@ server.tool("install_cli", {}, async () => {
 server.tool(
   "manage_wallet",
   {
-    help: z
-      .boolean()
-      .optional()
-      .describe("Show wallet help information"),
+    help: z.boolean().optional().describe("Show wallet help information"),
     unsafe: z
       .boolean()
       .optional()
