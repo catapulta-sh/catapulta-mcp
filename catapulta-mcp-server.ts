@@ -86,7 +86,11 @@ async function executeCommand(command: string): Promise<CommandResult> {
 server.tool(
   "generate_deploy_command",
   {
-    script_path: z.string().describe("Path to the Foundry deployment script"),
+    script_path: z
+      .string()
+      .describe(
+        "Path to the Foundry deployment script. This is the ONLY tool needed for contract deployment. Do not use wallet commands unless explicitly requested."
+      ),
     network: z
       .enum([
         "matic",
@@ -147,7 +151,9 @@ server.tool(
         "corn",
         "cornTestnet",
       ])
-      .describe("Target network for deployment"),
+      .describe(
+        "Target network for deployment. The sponsor option will handle gas automatically - no need for wallet operations."
+      ),
     sponsor: z
       .string()
       .toLowerCase()
@@ -155,7 +161,7 @@ server.tool(
       .pipe(z.boolean())
       .optional()
       .describe(
-        "Use sponsor so Catapulta can provide gas to the wallet before deployment, or deploy without crypto or deploy without cryptocurrencies"
+        "Use sponsor so Catapulta can provide gas to the wallet before deployment. This is the recommended option as it handles gas automatically - no need for wallet operations."
       ),
     gas_hawk: z
       .string()
@@ -164,24 +170,31 @@ server.tool(
       .pipe(z.boolean())
       .optional()
       .describe(
-        "Enable gas hawk mode to save gas costs in deployments or to queue the deployment to save gas prices"
+        "Enable gas hawk mode to save gas costs in deployments. This is optional and only affects gas optimization."
       ),
     simulate: z
       .boolean()
       .optional()
       .describe(
-        "Perform a fork simulation of the deployment script, does not upload artifacts"
+        "Perform a fork simulation of the deployment script. This is for testing only and does not require wallet operations."
       ),
     simulate_block_number: z
       .string()
       .optional()
-      .describe("Pass a block-height to simulation (fork) mode"),
-    skip_verify: z.boolean().optional().describe("Skip Etherscan verification"),
+      .describe(
+        "Pass a block-height to simulation (fork) mode. Only used with simulate option."
+      ),
+    skip_verify: z
+      .boolean()
+      .optional()
+      .describe(
+        "Skip Etherscan verification. This is optional and only affects contract verification."
+      ),
     libraries: z
       .string()
       .optional()
       .describe(
-        "Link libraries or library linking to the deployment script, format: <libraryPath>:<libraryName>:<libraryAddress>. "
+        "Link libraries to the deployment script. Format: <libraryPath>:<libraryName>:<libraryAddress>. This is only needed if your contract uses external libraries and only if the developer knows what they are doing. Advanced users only."
       ),
   },
   async ({
@@ -216,8 +229,7 @@ server.tool(
       content: [
         {
           type: "text",
-          text: `Command to execute:\n\n${command}`,
-          // When this is done, run the command in the terminal
+          text: `Command to execute:\n\n${command}\n\nIMPORTANT: This command will handle everything needed for deployment, including gas. No additional wallet operations are needed.`,
         },
       ],
       terminal_command: command,
@@ -232,7 +244,9 @@ server.tool(
   {
     command: z
       .enum(["help", "--version", "-v", "login"])
-      .describe("List of allowed commands"),
+      .describe(
+        "List of allowed commands. These are informational commands only and should not be used for deployment operations."
+      ),
   },
   async ({ command }) => {
     // Execute the command on the terminal
@@ -253,7 +267,7 @@ server.tool(
       content: [
         {
           type: "text",
-          text: `Command executed successfully:\n\n${result.data?.output}`,
+          text: `Command executed successfully:\n\n${result.data?.output}\n\nNote: This is an informational command only. For deployments, use the generate_deploy_command tool.`,
         },
       ],
     };
