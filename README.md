@@ -2,22 +2,17 @@
 
 # Catapulta MCP
 
-A Model Context Protocol (MCP) implementation for [Catapulta](https://catapulta.sh), enabling AI models or AI-powered code editors to perform Web3 smart contracts deployments.
-
-## Overview
-
-Catapulta MCP is a server implementation that bridges the gap between AI models and the Catapulta CLI, allowing for the automation of Web3 smart contracts deployment tasks and other operations. It provides a standardized way for AI models to interact with Catapulta's functionality through a secure and controlled interface.
+Enable AI models to easily connect to Web3 and deploy smart contracts in +20 EVM networks without cryptocurrencies using the Catapulta MCP (Model Context Protocol).
 
 ## Features
 
 - **Deployment Command Generation**: AI-powered generation of deployment commands with support for multiple networks
 - **Safe Command Execution**: Controlled execution of CLI commands with built-in safety checks
-- **Wallet Management**: Generate and manage wallets through simple commands
+- **Wallet Management**: Generate, manage wallets and get gas funding through simple commands
 - **Network Support**: Extensive network support including:
   - Ethereum networks (mainnet, testnets)
   - Layer 2 solutions (Arbitrum, Optimism, Base)
   - Alternative chains (BSC, Gnosis, Scroll)
-  - And many more
 - **Advanced Deployment Options**:
   - Gas optimization with gas-hawk mode
 
@@ -110,19 +105,37 @@ npm test
 
 ### Using it on Cursor
 
-- Open Cursor Settings
-- Go to the MCP tab
-- Click on Add new global MCP server
+1. Open Cursor Settings
+2. Go to the MCP tab
+3. Click on Add new global MCP server
 
-Paste this on the mcp.json
+Paste the following JSON on the mcp.json
 
+Max Osx, GNU/Linux
 ```json
 {
   "mcpServers": {
-    "Catapulta-client":
-    {
+    "catapulta": {
       "command": "npx",
       "args": ["-y", "@catapulta/mcp-server@latest"],
+      "env": {}
+    }
+  }
+}
+```
+
+Windows 10, Windows 11
+```json
+{
+  "mcpServers": {
+    "catapulta": {
+      "command": "C:\\Windows\\System32\\cmd.exe",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@catapulta/mcp-server@latest"
+      ],
       "env": {}
     }
   }
