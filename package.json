@@ -2,7 +2,7 @@
   "name": "@catapulta/mcp-server",
   "description": "Catapulta MCP Server",
   "author": "Catapulta",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "main": "dist/catapulta-mcp-server.js",
   "bin": {

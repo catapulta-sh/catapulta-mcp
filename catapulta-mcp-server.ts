@@ -219,7 +219,7 @@ server.tool(
   "execute_command",
   {
     command: z
-      .enum(["help", "--version", "-v"])
+      .enum(["help", "--version", "-v", "login"])
       .describe("List of allowed commands"),
   },
   async ({ command }) => {
@@ -244,6 +244,85 @@ server.tool(
           text: `Command executed successfully:\n\n${result.data?.output}`,
         },
       ],
+    };
+  }
+);
+
+// Add tool to install Catapulta CLI
+server.tool("install_cli", {}, async () => {
+  const installCommand = "npm i -g catapulta";
+
+  try {
+    const { stdout, stderr } = await execAsync(installCommand);
+
+    if (stderr && !stderr.includes("npm WARN")) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Error installing Catapulta CLI: ${stderr}`,
+          },
+        ],
+      };
+    }
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Catapulta CLI installed successfully!\n\n${stdout}`,
+        },
+      ],
+      terminal_command: installCommand,
+      should_run_command: true,
+    };
+  } catch (error) {
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Error installing Catapulta CLI: ${
+            error instanceof Error ? error.message : "Unknown error"
+          }`,
+        },
+      ],
+    };
+  }
+});
+
+// Add tool to manage wallet
+server.tool(
+  "manage_wallet",
+  {
+    help: z
+      .boolean()
+      .optional()
+      .describe("Show wallet help information"),
+    unsafe: z
+      .boolean()
+      .optional()
+      .describe("Generate unsafe private key (not recommended for production)"),
+  },
+  async ({ help = false, unsafe = false }) => {
+    // Format the command
+    const command = [
+      "catapulta wallet",
+      help ? "--help" : "",
+      unsafe ? "--unsafe-private-key" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Command to execute:\n\n${command}`,
+        },
+        // When this is done, run the command in the terminal
+      ],
+      terminal_command: command,
+      should_run_command: true,
     };
   }
 );
