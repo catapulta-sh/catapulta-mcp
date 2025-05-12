@@ -35,20 +35,20 @@ npm install
 ### Basic Usage
 
 ```typescript
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 // Create an MCP server
 const server = new McpServer({
-    name: 'catapulta-cli-server',
-    version: '0.1.0',
+  name: "catapulta-cli-server",
+  version: "0.1.0",
 });
 
 // Start the server with StdIO transport
 const transport = new StdioServerTransport();
 server.connect(transport).catch((error) => {
-    console.error('[MCP Error]', error);
-    process.exit(1);
+  console.error("[MCP Error]", error);
+  process.exit(1);
 });
 ```
 
@@ -56,11 +56,11 @@ server.connect(transport).catch((error) => {
 
 ```typescript
 // Example of generating a deployment command
-const command = await server.tool('generate_deploy_command', {
-    script_path: 'path/to/script',
-    network: 'matic',
-    sponsor: true,
-    gas_hawk: true
+const command = await server.tool("generate_deploy_command", {
+  script_path: "path/to/script",
+  network: "matic",
+  sponsor: true,
+  gas_hawk: true,
 });
 ```
 
@@ -117,11 +117,32 @@ Paste this on the mcp.json
 ```json
 {
   "mcpServers": {
-    "Catapulta-client":
-    {
+    "Catapulta-client": {
       "command": "npx",
       "args": ["-y", "@catapulta/mcp-server@latest"],
       "env": {}
+    }
+  }
+}
+```
+
+### Using it on VS Code
+
+- Open VS Code Settings
+- Write "MCP" in the search bar
+- Select User or Workspace and click on "Edit in settings.json"
+
+Paste this on the settings.json
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "Catapulta-client": {
+        "type": "stdio",
+        "command": "npx",
+        "args": ["-y", "@catapulta/mcp-server@latest"]
+      }
     }
   }
 }
