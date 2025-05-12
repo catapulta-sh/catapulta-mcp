@@ -1,18 +1,21 @@
-
-
 # Catapulta MCP
 
-Enable AI models to easily connect to Web3 and deploy smart contracts in +20 EVM networks without cryptocurrencies using the Catapulta MCP (Model Context Protocol).
+A Model Context Protocol (MCP) implementation for Catapulta CLI, enabling AI-powered interactions with deployment and management tools.
+
+## Overview
+
+Catapulta MCP is a server implementation that bridges the gap between AI models and the Catapulta CLI, allowing for intelligent automation of deployment tasks and other operations. It provides a standardized way for AI models to interact with Catapulta's functionality through a secure and controlled interface.
 
 ## Features
 
 - **Deployment Command Generation**: AI-powered generation of deployment commands with support for multiple networks
 - **Safe Command Execution**: Controlled execution of CLI commands with built-in safety checks
-- **Wallet Management**: Generate, manage wallets and get gas funding through simple commands
+- **Wallet Management**: Generate and manage wallets through simple commands
 - **Network Support**: Extensive network support including:
   - Ethereum networks (mainnet, testnets)
   - Layer 2 solutions (Arbitrum, Optimism, Base)
   - Alternative chains (BSC, Gnosis, Scroll)
+  - And many more
 - **Advanced Deployment Options**:
   - Gas optimization with gas-hawk mode
 
@@ -32,20 +35,20 @@ npm install
 ### Basic Usage
 
 ```typescript
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 // Create an MCP server
 const server = new McpServer({
-    name: 'catapulta-cli-server',
-    version: '0.1.0',
+  name: "catapulta-cli-server",
+  version: "0.1.0",
 });
 
 // Start the server with StdIO transport
 const transport = new StdioServerTransport();
 server.connect(transport).catch((error) => {
-    console.error('[MCP Error]', error);
-    process.exit(1);
+  console.error("[MCP Error]", error);
+  process.exit(1);
 });
 ```
 
@@ -53,11 +56,11 @@ server.connect(transport).catch((error) => {
 
 ```typescript
 // Example of generating a deployment command
-const command = await server.tool('generate_deploy_command', {
-    script_path: 'path/to/script',
-    network: 'matic',
-    sponsor: true,
-    gas_hawk: true
+const command = await server.tool("generate_deploy_command", {
+  script_path: "path/to/script",
+  network: "matic",
+  sponsor: true,
+  gas_hawk: true,
 });
 ```
 
@@ -105,17 +108,16 @@ npm test
 
 ### Using it on Cursor
 
-1. Open Cursor Settings
-2. Go to the MCP tab
-3. Click on Add new global MCP server
+- Open Cursor Settings
+- Go to the MCP tab
+- Click on Add new global MCP server
 
-Paste the following JSON on the mcp.json
+Paste this on the mcp.json
 
-Max Osx, GNU/Linux
 ```json
 {
   "mcpServers": {
-    "catapulta": {
+    "Catapulta-client": {
       "command": "npx",
       "args": ["-y", "@catapulta/mcp-server@latest"],
       "env": {}
@@ -124,19 +126,23 @@ Max Osx, GNU/Linux
 }
 ```
 
-Windows 10, Windows 11
+### Using it on VS Code
+
+- Open VS Code Settings
+- Write "MCP" in the search bar
+- Select User or Workspace and click on "Edit in settings.json"
+
+Paste this on the settings.json
+
 ```json
 {
-  "mcpServers": {
-    "catapulta": {
-      "command": "C:\\Windows\\System32\\cmd.exe",
-      "args": [
-        "/c",
-        "npx",
-        "-y",
-        "@catapulta/mcp-server@latest"
-      ],
-      "env": {}
+  "mcp": {
+    "servers": {
+      "Catapulta-client": {
+        "type": "stdio",
+        "command": "npx",
+        "args": ["-y", "@catapulta/mcp-server@latest"]
+      }
     }
   }
 }
