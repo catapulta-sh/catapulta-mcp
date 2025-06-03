@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ALLOWED_COMMANDS } from "../types.js";
+import { ALLOWED_COMMANDS } from "../config/config.js";
 
 export const commandSchema = z
   .enum(ALLOWED_COMMANDS)

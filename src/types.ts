@@ -1,3 +1,5 @@
+import { AllowedCommand, Network } from './config/config';
+
 export interface CommandResult {
   status: "success" | "error";
   message?: string;
@@ -38,76 +40,7 @@ export interface WalletOptions {
   unsafe?: boolean;
 }
 
-export const ALLOWED_COMMANDS = [
-  "help",
-  "--version",
-  "-v",
-  "login",
-  "network",
-] as const;
-export type AllowedCommand = (typeof ALLOWED_COMMANDS)[number];
-
-export const NETWORKS = [
-  "matic",
-  "maticMumbai",
-  "polygonAmoy",
-  "main",
-  "arbitrum",
-  "arbitrumGoerli",
-  "arbitrumSepolia",
-  "avalanche",
-  "avalancheFuji",
-  "optimism",
-  "optimismGoerli",
-  "optimismSepolia",
-  "goerli",
-  "sepolia",
-  "base",
-  "baseTestnet",
-  "baseSepolia",
-  "bsc",
-  "bscTestnet",
-  "gnosis",
-  "gnosisTestnet",
-  "scroll",
-  "scrollSepolia",
-  "metis",
-  "metisTestnet",
-  "zksyncEraMainnet",
-  "zksyncSepolia",
-  "polygonZkEvm",
-  "polygonZkEvmTestnet",
-  "stavenger",
-  "zKatana",
-  "blastSepolia",
-  "blast",
-  "holesky",
-  "fantom",
-  "fantomTestnet",
-  "celo",
-  "moonbeam",
-  "moonbeamTestnet",
-  "kroma",
-  "kromaSepolia",
-  "mantle",
-  "mantleSepolia",
-  "zeeveDemo",
-  "degen",
-  "bartio",
-  "sonic",
-  "sonicTestnet",
-  "lensTestnet",
-  "unichainTestnet",
-  "mode",
-  "modeTestnet",
-  "monadTestnet",
-  "ink",
-  "inkTestnet",
-  "corn",
-  "cornTestnet",
-] as const;
-
-export type Network = (typeof NETWORKS)[number];
+export type { AllowedCommand, Network };
 
 export interface NetworkPricing {
   openzeppelin: string;

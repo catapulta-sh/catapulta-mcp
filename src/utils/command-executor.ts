@@ -1,6 +1,7 @@
 import { exec } from "child_process";
 import { promisify } from "util";
-import { CommandResult, ALLOWED_COMMANDS, AllowedCommand } from "../types.js";
+import { CommandResult } from "../types.js";
+import { ALLOWED_COMMANDS } from "../config/config.js";
 
 const execAsync = promisify(exec);
 

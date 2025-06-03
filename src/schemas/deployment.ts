@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { NETWORKS } from "../types.js";
+import { NETWORKS } from "../config/config.js";
 
 export const scriptDeploymentSchema = {
   script_path: z
