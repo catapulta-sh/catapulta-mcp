@@ -10,16 +10,7 @@ export const scriptDeploymentSchema = {
   network: z
     .enum(NETWORKS)
     .describe(
-      "Target network for deployment. The sponsor option will handle gas automatically - no need for wallet operations."
-    ),
-  sponsor: z
-    .string()
-    .toLowerCase()
-    .transform((val) => val === "true")
-    .pipe(z.boolean())
-    .optional()
-    .describe(
-      "Use sponsor so Catapulta can provide gas to the wallet before deployment. This is the recommended option as it handles gas automatically - no need for wallet operations."
+      "Target network for deployment. Catapulta will handle gas automatically - no need for wallet operations."
     ),
   gas_hawk: z
     .string()
@@ -76,16 +67,7 @@ export const createDeploymentSchema = {
   network: z
     .enum(NETWORKS)
     .describe(
-      "Target network for deployment. The sponsor option will handle gas automatically - no need for wallet operations."
-    ),
-  sponsor: z
-    .string()
-    .toLowerCase()
-    .transform((val) => val === "true")
-    .pipe(z.boolean())
-    .optional()
-    .describe(
-      "Use sponsor so Catapulta can provide gas to the wallet before deployment. This is the recommended option as it handles gas automatically - no need for wallet operations."
+      "Target network for deployment. Catapulta will handle gas automatically - no need for wallet operations."
     ),
   gas_hawk: z
     .string()

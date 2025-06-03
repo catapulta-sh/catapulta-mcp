@@ -9,7 +9,6 @@ export function buildScriptDeploymentCommand(options: ScriptDeploymentOptions): 
   const {
     script_path,
     network,
-    sponsor = true,
     gas_hawk = false,
     simulate = false,
     simulate_block_number,
@@ -22,7 +21,6 @@ export function buildScriptDeploymentCommand(options: ScriptDeploymentOptions): 
     script_path,
     "--network",
     network,
-    sponsor ? "--sponsor" : "",
     gas_hawk ? "--gas-hawk" : "",
     simulate ? "--simulate" : "",
     simulate_block_number
@@ -47,7 +45,6 @@ export function buildCreateDeploymentCommand(options: CreateDeploymentOptions): 
     contract_path,
     contract_name,
     network,
-    sponsor = true,
     gas_hawk = false,
     simulate = false,
     simulate_block_number,
@@ -61,7 +58,6 @@ export function buildCreateDeploymentCommand(options: CreateDeploymentOptions): 
     `${contract_path}:${contract_name}`,
     "--network",
     network,
-    sponsor ? "--sponsor" : "",
     gas_hawk ? "--gas-hawk" : "",
     simulate ? "--simulate" : "",
     simulate_block_number

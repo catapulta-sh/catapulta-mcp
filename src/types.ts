@@ -12,7 +12,6 @@ export interface CommandResult {
 export interface ScriptDeploymentOptions {
   script_path: string;
   network: string;
-  sponsor?: boolean;
   gas_hawk?: boolean;
   simulate?: boolean;
   simulate_block_number?: string;
@@ -25,7 +24,6 @@ export interface CreateDeploymentOptions {
   contract_path: string;
   contract_name: string;
   network: string;
-  sponsor?: boolean;
   gas_hawk?: boolean;
   simulate?: boolean;
   simulate_block_number?: string;
