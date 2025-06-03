@@ -7,7 +7,7 @@ export interface CommandResult {
   };
 }
 
-export interface DeploymentOptions {
+export interface ScriptDeploymentOptions {
   script_path: string;
   network: string;
   sponsor?: boolean;
@@ -19,17 +19,37 @@ export interface DeploymentOptions {
   private_key?: string;
 }
 
+export interface CreateDeploymentOptions {
+  contract_path: string;
+  contract_name: string;
+  network: string;
+  sponsor?: boolean;
+  gas_hawk?: boolean;
+  simulate?: boolean;
+  simulate_block_number?: string;
+  skip_verify?: boolean;
+  libraries?: string;
+  private_key?: string;
+  constructor_args?: string[];
+}
+
 export interface WalletOptions {
   help?: boolean;
   unsafe?: boolean;
 }
 
-export const ALLOWED_COMMANDS = ["help", "--version", "-v", "login", "network"] as const;
-export type AllowedCommand = typeof ALLOWED_COMMANDS[number];
+export const ALLOWED_COMMANDS = [
+  "help",
+  "--version",
+  "-v",
+  "login",
+  "network",
+] as const;
+export type AllowedCommand = (typeof ALLOWED_COMMANDS)[number];
 
 export const NETWORKS = [
   "matic",
-  "maticMumbai", 
+  "maticMumbai",
   "polygonAmoy",
   "main",
   "arbitrum",
@@ -87,4 +107,4 @@ export const NETWORKS = [
   "cornTestnet",
 ] as const;
 
-export type Network = typeof NETWORKS[number]; 
+export type Network = (typeof NETWORKS)[number];

@@ -29,7 +29,7 @@ export function registerCommandTool(server: McpServer) {
         content: [
           {
             type: "text",
-            text: `Command executed successfully:\n\n${result.data?.output}\n\nNote: This is an informational command only. For deployments, use the generate_deploy_command tool.`,
+            text: `Command executed successfully:\n\n${result.data?.output}\n\nNote: This is an informational command only. For deployments, use the generate_script_deploy_command or generate_create_deploy_command tools.`,
           },
         ],
       };

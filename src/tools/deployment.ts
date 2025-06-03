@@ -1,24 +1,24 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { deploymentSchema } from "../schemas/deployment.js";
-import { buildDeploymentCommand } from "../utils/command-builder.js";
-import { DeploymentOptions } from "../types.js";
+import { scriptDeploymentSchema, createDeploymentSchema } from "../schemas/deployment.js";
+import { buildScriptDeploymentCommand, buildCreateDeploymentCommand } from "../utils/command-builder.js";
+import { ScriptDeploymentOptions, CreateDeploymentOptions } from "../types.js";
 
 /**
- * Registers the deployment tool with the MCP server
+ * Registers the script deployment tool with the MCP server
  * @param server - The MCP server instance
  */
-export function registerDeploymentTool(server: McpServer) {
+export function registerScriptDeploymentTool(server: McpServer) {
   server.tool(
-    "generate_deploy_command",
-    deploymentSchema,
-    async (options: DeploymentOptions) => {
-      const command = buildDeploymentCommand(options);
+    "generate_script_deploy_command",
+    scriptDeploymentSchema,
+    async (options: ScriptDeploymentOptions) => {
+      const command = buildScriptDeploymentCommand(options);
 
       return {
         content: [
           {
             type: "text",
-            text: `Command to execute:\n\n${command}\n\nIMPORTANT: This command will handle everything needed for deployment, including gas. No additional wallet operations are needed.`,
+            text: `Script deployment command to execute:\n\n${command}\n\nThis command will deploy your Foundry script and handle everything needed for deployment, including gas. No additional wallet operations are needed.`,
           },
         ],
         terminal_command: command,
@@ -26,4 +26,29 @@ export function registerDeploymentTool(server: McpServer) {
       };
     }
   );
-} 
+}
+
+/**
+ * Registers the create deployment tool with the MCP server
+ * @param server - The MCP server instance
+ */
+export function registerCreateDeploymentTool(server: McpServer) {
+  server.tool(
+    "generate_create_deploy_command",
+    createDeploymentSchema,
+    async (options: CreateDeploymentOptions) => {
+      const command = buildCreateDeploymentCommand(options);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Contract deployment command to execute:\n\n${command}\n\nThis command will deploy your contract directly and handle everything needed for deployment, including gas. No additional wallet operations are needed.`,
+          },
+        ],
+        terminal_command: command,
+        should_run_command: true,
+      };
+    }
+  );
+}

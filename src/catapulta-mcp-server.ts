@@ -3,7 +3,8 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
-  registerDeploymentTool,
+  registerScriptDeploymentTool,
+  registerCreateDeploymentTool,
   registerCommandTool,
   registerInstallTool,
   registerWalletTool,
@@ -16,7 +17,8 @@ const server = new McpServer({
 });
 
 // Register all tools
-registerDeploymentTool(server);
+registerScriptDeploymentTool(server);
+registerCreateDeploymentTool(server);
 registerCommandTool(server);
 registerInstallTool(server);
 registerWalletTool(server);
@@ -28,4 +30,4 @@ server.connect(transport).catch((error) => {
   process.exit(1);
 });
 
-console.error("Catapulta CLI MCP server running on stdio"); 
+console.error("Catapulta CLI MCP server running on stdio");
