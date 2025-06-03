@@ -127,7 +127,7 @@ The MCP server provides the following tools:
 3. **`get_network_pricing`** - Fetch real-time network pricing information
 4. **`manage_wallet`** - Generate and manage wallets
 5. **`install_cli`** - Install the Catapulta CLI
-6. **`execute_command`** - Execute safe CLI commands (help, version, login, network)
+6. **`execute_command`** - Execute safe CLI commands (help, version, login, network, buy credits)
 
 ## Supported Networks
 
