@@ -133,3 +133,12 @@ export const createDeploymentSchema = {
       "Constructor arguments for the contract deployment. Array of strings representing the arguments to pass to the contract constructor. These will be added at the end of the command."
     ),
 };
+
+export const pricingSchema = {
+  chain_id: z
+    .string()
+    .optional()
+    .describe(
+      "Specific chain ID to get pricing for (e.g., '1' for Ethereum, '137' for Polygon). If not provided, returns pricing for all supported networks."
+    ),
+};

@@ -108,3 +108,17 @@ export const NETWORKS = [
 ] as const;
 
 export type Network = (typeof NETWORKS)[number];
+
+export interface NetworkPricing {
+  openzeppelin: string;
+  oneGas: string;
+  network: string;
+}
+
+export interface PricingResponse {
+  [chainId: string]: NetworkPricing;
+}
+
+export interface PricingOptions {
+  chain_id?: string;
+}

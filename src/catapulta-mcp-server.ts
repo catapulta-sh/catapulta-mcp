@@ -8,6 +8,7 @@ import {
   registerCommandTool,
   registerInstallTool,
   registerWalletTool,
+  registerPricingTool,
 } from "./tools/index.js";
 
 // Create an MCP server
@@ -22,6 +23,7 @@ registerCreateDeploymentTool(server);
 registerCommandTool(server);
 registerInstallTool(server);
 registerWalletTool(server);
+registerPricingTool(server);
 
 // Start the server with StdIO transport
 const transport = new StdioServerTransport();
