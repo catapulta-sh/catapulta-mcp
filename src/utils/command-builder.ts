@@ -14,6 +14,7 @@ export function buildScriptDeploymentCommand(options: ScriptDeploymentOptions): 
     simulate_block_number,
     skip_verify = false,
     libraries,
+    private_key,
   } = options;
 
   const command = [
@@ -28,6 +29,7 @@ export function buildScriptDeploymentCommand(options: ScriptDeploymentOptions): 
       : "",
     skip_verify ? "--skip-verify" : "",
     libraries ? `--libraries ${libraries}` : "",
+    private_key ? `--private-key ${private_key}` : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -50,6 +52,7 @@ export function buildCreateDeploymentCommand(options: CreateDeploymentOptions): 
     simulate_block_number,
     skip_verify = false,
     libraries,
+    private_key,
     constructor_args,
   } = options;
 
@@ -65,6 +68,7 @@ export function buildCreateDeploymentCommand(options: CreateDeploymentOptions): 
       : "",
     skip_verify ? "--skip-verify" : "",
     libraries ? `--libraries ${libraries}` : "",
+    private_key ? `--private-key ${private_key}` : "",
   ]
     .filter(Boolean)
     .join(" ");
