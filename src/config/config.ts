@@ -5,6 +5,7 @@ export const ALLOWED_COMMANDS = [
   "-v",
   "login",
   "network",
+  "balance",
 ] as const;
 export type AllowedCommand = (typeof ALLOWED_COMMANDS)[number];
 
@@ -15,6 +16,7 @@ export const COMMAND_DESCRIPTIONS = {
     "-v": "Show the current version of Catapulta CLI (short form)",
     "login": "Authenticate with Catapulta services",
     "network": "Display information about supported networks and their configurations",
+    "balance": "Display the credit balance of your Catapulta account",
   } as const;
 
 export const NETWORKS = [
